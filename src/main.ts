@@ -15,7 +15,8 @@ async function bootstrap() {
   });
 
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT') || 3000;
+  // const port = configService.get<number>('PORT') || 3000;
+  const port = process.env.PORT || 3000;
 
   // Global prefix sifatida /api qo‘shish
   app.setGlobalPrefix('api');

@@ -6,6 +6,14 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // CORS ni barcha manzillar uchun ruxsat berish
+  app.enableCors({
+    origin: true, // Barcha manzillarga ruxsat
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Agar cookie yoki autentifikatsiya kerak bo'lsa
+  });
+
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT') || 3000;
 

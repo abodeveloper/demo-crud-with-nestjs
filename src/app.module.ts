@@ -13,19 +13,10 @@ import { ProductsModule } from './products/products.module';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => {
-        const uri = configService.get<string>('MONGODB_URI');
-        if (!uri) {
-          throw new Error(
-            'MONGODB_URI is not defined in environment variables',
-          );
-        }
-        return {
-          uri,
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        };
-      },
+      useFactory: async (configService: ConfigService) => ({
+        // uri: configService.get<string>('MONGODB_URI'),
+        uri: 'mongodb+srv://abodeveloper2811:g4oUnhFAtpOvzTbs@cluster0.clnn5lu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+      }),
       inject: [ConfigService],
     }),
     CategoriesModule,

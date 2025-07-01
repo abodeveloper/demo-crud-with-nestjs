@@ -13,9 +13,19 @@ import { ProductsModule } from './products/products.module';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('MONGODB_URI'),
-      }),
+      useFactory: async (configService: ConfigService) => {
+        const uri = configService.get<string>('MONGODB_URI');
+        if (!uri) {
+          throw new Error(
+            'MONGODB_URI is not defined in environment variables',
+          );
+        }
+        return {
+          uri,
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+        };
+      },
       inject: [ConfigService],
     }),
     CategoriesModule,

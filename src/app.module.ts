@@ -15,7 +15,7 @@ import { ProductsModule } from './products/products.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         // uri: configService.get<string>('MONGODB_URI'),
-        uri: process.env.MONGODB_URI,
+        uri: 'mongodb+srv://abodeveloper2811:g4oUnhFAtpOvzTbs@cluster0.clnn5lu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
       }),
       inject: [ConfigService],
     }),

@@ -4,7 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
+import { FormTestingModule } from './form-testing/form-testing.module';
 import { ProductsModule } from './products/products.module';
+import { SocketModule } from './socket/socket.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { ProductsModule } from './products/products.module';
       }),
       inject: [ConfigService],
     }),
+    SocketModule,
+    FormTestingModule,
     CategoriesModule,
     ProductsModule,
   ],
